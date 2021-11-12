@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+<!-- Boostrap Navbar -->
+{% if user.is_authenticated %}
+<form class="form-inline my-2 my-lg-0" action="{% url 'blogg-about' %}" onsubmit=cool()>
+    <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search" name="search" id="tags">
+    <button class="btn btn-outline-success my-2 my-sm-0 mt-2" type="submit">Search</button>
+  </form>
+
+  <div class="container">
+    {% for post in posts %}
+    <h1>{{forloop.counter}}. <a class="tex" href="{% url 'post-detail' post.id%}">{{post.title}}</a></h1>
+     <p>{{post.content}}</p>
+     <p>{{post.author}}</p>
+     <p>Date Created: {{post.date_posted}}</p>
+    {% endfor %}
+
+  </div>
+
+{% else %}
+<h1>Sign In To Search Posts</h1>
+
+{% endif %}
+
+
+   {% endblock %}

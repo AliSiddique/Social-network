@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+<h1 class="mb-3">Posts by {{ view.kwargs.username}} ({{ page_obj.paginator.count }})</h1>
+
+<article class="media content-section">
+  <div class="media-body">
+
+    <div class="article-metadata">
+      <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+
+      <a class="mr-2" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
+      <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+      
+      <h2 class="aticle-title pt-2">{{ object.title }}</h2>
+      <p class="article-content pl-3">{{ object.content }}</p>
+    </div>
+  </div>
+</article>
+{% endblock content %}
